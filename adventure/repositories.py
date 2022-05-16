@@ -16,7 +16,7 @@ class JourneyRepository:
         
     def create_journeyDate(self, vehicle: models.Vehicle, StartDate) -> models.Journey:
         c = models.Journey.objects.create(
-            vehicle=vehicle, start=timezone.now().date(), end = timezone.now().date()
+            vehicle=vehicle, start=StartDate, end = timezone.now().date()
         )
         return c
     

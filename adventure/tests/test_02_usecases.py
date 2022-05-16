@@ -66,7 +66,7 @@ class TestStopJourney:
         # then saves it to the database
         repo = MockJourneyRepository()
         notifier = MockNotifier()
-        data = {"name": "Kitt", "passengers": 2, "date":"2022-04-15"}
+        data = {"name": "Kitt", "passengers": 2, "date":"15-04-2022"}
         usecase = usecases.StopJourney(repo, notifier).set_params(data)
         journey = usecase.execute()
         assert journey.vehicle.name == "Kitt"

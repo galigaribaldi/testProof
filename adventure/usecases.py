@@ -36,7 +36,10 @@ class StopJourney:
         return self
 
     def execute(self) -> None:
-        DateBegin = ""
+        print(self.data["date"])
+        DateBegin = datetime.strptime(self.data["date"], '%d-%m-%Y')
+        print(DateBegin)
+        self.data.pop('date')
         car = self.repository.get_or_create_car()
         car.save()
         vehicle = self.repository.create_vehicle(vehicle_type=car, **self.data)

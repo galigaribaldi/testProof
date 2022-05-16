@@ -84,5 +84,15 @@ class TestStopJourneyAPIView:
 
         payload = {"name": "Kitten", "passengers": 2, "date":"2022/04/15"}
         response = client.post("/api/adventure/stop/", payload)
-        print(response)
         assert response.status_code == 201
+        
+    def test_api_fail(self, client, mocker):
+        mocker.patch.object(
+            views.StopJourneyAPIView,
+            "get_repository",
+            return_value=MockJourneyRepository(),
+        )
+
+        payload = {"name": "Kitt", "passengers": 6}
+        response = client.post("/api/adventure/stop/", payload)
+        assert response.status_code == 400
